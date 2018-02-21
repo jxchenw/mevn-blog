@@ -1,0 +1,50 @@
+<template>
+	<div>
+		<ul class="topnav">
+			<li><router-link to="/" exact>Home</router-link></li>
+			<li><router-link to="/blogs" exact>Blogs</router-link></li>
+			<li class="right"><router-link to="/add" exact>Post a blog</router-link></li>
+		</ul>
+	</div>
+</template>
+
+<script></script>
+
+<style scoped>
+ul.topnav {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+ul.topnav li {
+	float: left;
+}
+
+ul.topnav li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.router-link-active) {
+	background-color: #111;
+}
+
+ul.topnav li a.router-link-active {
+	background-color: #4CAF50;
+}
+
+ul.topnav li.right {
+	float: right;
+}
+
+@media screen and (max-width: 600px){
+	ul.topnav li.right, 
+	ul.topnav li {float: none;}
+}
+</style>
