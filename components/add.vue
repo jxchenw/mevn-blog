@@ -42,7 +42,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<button v-on:click.prevent="post" type="submit">submit</button>
+				<button v-on:click.prevent="post" type="submit">Post</button>
 			</div>
 		</form>
 	</div>

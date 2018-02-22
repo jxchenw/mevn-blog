@@ -12,6 +12,13 @@ const router = new VueRouter({
 	mode: 'history'
 });
 
+Vue.filter('toUppercase', function(value) {
+	if(!value)
+		return ''
+	else
+		return value.toUpperCase();
+})
+
 new Vue({
 	el: '#app',
 	render: h => h(App),
