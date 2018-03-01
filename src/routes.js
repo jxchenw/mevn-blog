@@ -4,7 +4,6 @@ import blog from './components/blog.vue'
 import add from './components/add.vue'
 import edit from './components/edit.vue'
 import register from './components/register.vue'
-import login from './components/login.vue'
 import personal from './components/personal.vue'
 import images from './components/images.vue'
 import notFound from './components/notFound.vue'
@@ -17,7 +16,6 @@ export default [
 	{ path: '/add', component: add },
 	{ path: '/blog/:id/edit', component: edit },
 	{ path: '/user/register', component: register },
-	{ path: '/user/login', component: login },
 	{ path: '/user/personal', component: personal },
 	{ path: '/user/images', component: images },
 	{ path: '*', component: notFound }

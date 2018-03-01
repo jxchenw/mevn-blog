@@ -53,6 +53,7 @@ export default {
 	data() {
 		return {
 			blog: {
+				userid: '',
 				title: '',
 				categories: [],
 				content: '',
@@ -62,8 +63,8 @@ export default {
 	},
 	methods: {
 		post: function() {
-			console.log('Hello');
 			this.$http.post('http://localhost:4000/api/blogs', {
+
 				title: this.blog.title,
 				category: this.blog.categories,
 				content: this.blog.content,
@@ -71,10 +72,16 @@ export default {
 			}).then(function(data) {
 				console.log('success!');
 				this.$router.push({ path: '/blogs' });
-			}, function(err) {
+			}).catch(function(err) {
 				console.log('fail');
 				console.log(err);
 			});
+		}
+	},
+	created: function() {
+		var user = this.$session.get('jwt');
+		if(user) {
+			this.blog.userid = user;
 		}
 	}
 }

@@ -107,9 +107,9 @@ export default {
 			formData.append(fieldName, fileList[0], fileList[0].name);
 
 			this.$http.post("http://localhost:4000/api/upload/image", formData).then(function(info) {
-				this.tmpImage = this.base_url + info.body;
+				this.tmpImage = this.base_url + info.body.path;
 				this.hasUploaded = true;
-				this.$session.set('tmp', info.body);
+				this.$session.set('tmp', info.body.path);
 			}).catch(function(err) {
 				this.error_messages.push(err.bodyText);
 			});
@@ -134,6 +134,11 @@ export default {
 		},
 		register: function() {
 			if(this.userReg.username && this.userReg.password && this.userReg.email && this.confirm_password && this.userReg.password == this.confirm_password) {
+				var tmp = this.$session.get('tmp');
+				if(tmp) {
+					this.userReg.image = tmp;
+				}
+				console.log(this.userReg);
 				this.$http.post('http://localhost:4000/api/signup', this.userReg).then(function(info) {
 					this.$session.set('jwt', info.body);
 					this.$emit("userComing");
@@ -177,7 +182,9 @@ export default {
 		
 	},
 	beforeDestroy: function() {
-		this.cancleUploading();
+		if(this.hasUploaded) {
+			this.cancleUploading();
+		}
 	}
 }
 </script>

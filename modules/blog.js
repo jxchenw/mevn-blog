@@ -10,6 +10,7 @@ var categorySchema = new Schema({
 });
 
 var blogSchema = new Schema({
+	userid: String,
 	title: String,
 	author: String,
 	category: [String],

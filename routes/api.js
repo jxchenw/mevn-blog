@@ -121,9 +121,21 @@ router.delete('/user/:id', function(req, res, next) {
 	});
 });
 
+router.get('/images', function(req, res, next) {
+	Photo.find({}).then(function(info) {
+		res.send(info);
+	})
+});
+
+router.delete('/images', function(req, res, next) {
+	Photo.remove({}).then(function(info) {
+		res.send(info);
+	})
+});
+
 router.post('/upload/image', upload.single('avator'), function(req, res, next) {
 	Photo.create({ path: req.file.filename }).then(function(info) {
-		res.send(info.path);
+		res.send(info);
 	}).catch(function(err) {
 		res.status(400).send('upload failed');
 	})
