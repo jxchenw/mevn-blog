@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const routes = require('./routes/api');
+const cors = require("cors");
 
 var app = express();
 
@@ -9,8 +10,10 @@ var app = express();
 mongoose.connect('mongoDB://localhost/blog');
 mongoose.Promise = global.Promise;
 
+
 // extract the entire body portion of an incoming request stream and exposes it on req.body.
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // set up headers
 app.use(function(req, res, next) {
@@ -18,7 +21,8 @@ app.use(function(req, res, next) {
 	res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
 	res.header('Access-Control-Allow-Headers', 'Content-Type');
 	next();
-})
+});
+app.use(cors());
 
 // initializing apis
 app.use('/api', routes);
